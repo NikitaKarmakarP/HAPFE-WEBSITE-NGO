@@ -14,6 +14,9 @@ export default function Navbar() {
   const [isNewsEventsOpen, setIsNewsEventsOpen] = useState(false)
   const [isAboutUsOpen, setIsAboutUsOpen] = useState(false)
   const [isLeadershipOpen, setIsLeadershipOpen] = useState(false)
+  // Add state for Thematic Areas dropdown
+  const [isThematicOpen, setIsThematicOpen] = useState(false);
+  const [isImpactOpen, setIsImpactOpen] = useState(false);
 
   const programs = [
     {
@@ -191,6 +194,41 @@ export default function Navbar() {
                     <h4 className="text-lg font-semibold text-gray-900 mb-4">What We Do</h4>
                   </div>
 
+                  {/* Thematic Areas Static List */}
+                  <div className="mb-1 relative group/thematic">
+                    <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></div>
+                        <span className="font-medium text-gray-800">Thematic Area</span>
+                      </div>
+                      <ChevronRight className="h-4 w-4 text-gray-400" />
+                    </div>
+                    {/* Submenu for Thematic Area */}
+                    <div className="absolute left-full top-0 ml-2 w-72 bg-white rounded-lg shadow-xl border border-gray-200 opacity-0 invisible group-hover/thematic:opacity-100 group-hover/thematic:visible transition-all duration-300 z-50">
+                      <div className="p-4">
+                        <h5 className="font-medium text-gray-900 mb-3">Thematic Area</h5>
+                        {/* Desktop Thematic Area submenu */}
+                        <div className="space-y-1">
+                          <Link href="/programs/empowering-communities" className="block p-3 rounded-lg hover:bg-gray-50 transition-colors group/link">
+                            <div className="font-medium text-gray-900 group-hover/link:text-green-600 text-sm">Empowering Communities</div>
+                          </Link>
+                          <Link href="/programs/livelihoods" className="block p-3 rounded-lg hover:bg-gray-50 transition-colors group/link">
+                            <div className="font-medium text-gray-900 group-hover/link:text-green-600 text-sm">Livelihoods</div>
+                          </Link>
+                          <Link href="/programs/environment-disaster-mitigation" className="block p-3 rounded-lg hover:bg-gray-50 transition-colors group/link">
+                            <div className="font-medium text-gray-900 group-hover/link:text-green-600 text-sm">Environment Sustainability & Disaster Management</div>
+                          </Link>
+                          <Link href="/programs/enterprise-marketing-linkages" className="block p-3 rounded-lg hover:bg-gray-50 transition-colors group/link">
+                            <div className="font-medium text-gray-900 group-hover/link:text-green-600 text-sm">Enterprise and Marketing Linkages</div>
+                          </Link>
+                          <Link href="/programs/strategic-partnerships" className="block p-3 rounded-lg hover:bg-gray-50 transition-colors group/link">
+                            <div className="font-medium text-gray-900 group-hover/link:text-green-600 text-sm">Strategic Partnerships</div>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   {/* Our Projects Sub-dropdown */}
                   <div className="relative group/projects">
                     <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 cursor-pointer">
@@ -234,9 +272,46 @@ export default function Navbar() {
               </div>
             </div>
 
-            <Link href="/impact" className="text-gray-700 hover:text-green-600 transition-colors">
-              Our Impact
-            </Link>
+            {/* Our Impact Dropdown */}
+            <div className="relative group">
+              <button className="flex items-center text-gray-700 hover:text-green-600 transition-colors py-2">
+                Our Impact
+                <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
+              </button>
+              {/* Dropdown Menu */}
+              <div className="absolute left-0 mt-2 w-72 bg-white rounded-lg shadow-xl border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                <div className="p-4">
+                  <div className="mb-3">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Our Impact</h4>
+                  </div>
+                  <Link href="/impact#stats" className="block p-2 rounded-lg hover:bg-gray-50 transition-colors group/link mb-1">
+                    <div className="flex items-center">
+                      <div className="w-2 h-2 bg-green-600 rounded-full mr-3"></div>
+                      <div className="font-medium text-gray-800 group-hover/link:text-green-600">Impact Stats</div>
+                    </div>
+                  </Link>
+                  <Link href="/impact#stories" className="block p-2 rounded-lg hover:bg-gray-50 transition-colors group/link mb-1">
+                    <div className="flex items-center">
+                      <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
+                      <div className="font-medium text-gray-800 group-hover/link:text-blue-600">Stories of Transformation</div>
+                    </div>
+                  </Link>
+                  <Link href="/impact#map" className="block p-2 rounded-lg hover:bg-gray-50 transition-colors group/link mb-1">
+                    <div className="flex items-center">
+                      <div className="w-2 h-2 bg-purple-600 rounded-full mr-3"></div>
+                      <div className="font-medium text-gray-800 group-hover/link:text-purple-600">Impact Map</div>
+                    </div>
+                  </Link>
+                  <div className="pt-2 mt-2 border-t border-gray-200">
+                    <Link href="/impact" className="text-sm text-green-600 hover:text-green-700 font-medium flex items-center">
+                      View Complete Impact
+                      <ChevronRight className="ml-1 h-3 w-3" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Knowledge Hub Dropdown */}
             <div className="relative group">
               <button className="flex items-center text-gray-700 hover:text-green-600 transition-colors py-2">
@@ -251,21 +326,46 @@ export default function Navbar() {
                     <h4 className="text-lg font-semibold text-gray-900 mb-4">Knowledge Hub</h4>
                   </div>
 
-                  {/* Main Knowledge Hub Link */}
-                  <Link
-                    href="/knowledge-hub"
-                    className="block p-3 rounded-lg hover:bg-gray-50 transition-colors group/link mb-2"
-                  >
-                    <div className="flex items-center">
-                      <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                      <div>
-                        <div className="font-medium text-gray-800 group-hover/link:text-blue-600">
-                          Resources & Guides
+                  {/* Resources & Guides with Sub-dropdown */}
+                  <div className="relative group/resources">
+                    <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 cursor-pointer mb-2">
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
+                        <div>
+                          <div className="font-medium text-gray-800">Resources & Guides</div>
+                          <div className="text-sm text-gray-600">Training materials and documentation</div>
                         </div>
-                        <div className="text-sm text-gray-600">Training materials and documentation</div>
+                      </div>
+                      <ChevronRight className="h-4 w-4 text-gray-400" />
+                    </div>
+
+                    {/* Sub-dropdown for Resources & Guides */}
+                    <div className="absolute left-full top-0 ml-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 opacity-0 invisible group-hover/resources:opacity-100 group-hover/resources:visible transition-all duration-300 z-50">
+                      <div className="p-4">
+                        <h5 className="font-medium text-gray-900 mb-3">Resources & Guides</h5>
+                        <div className="space-y-1">
+                          <Link
+                            href="/knowledge-hub"
+                            className="block p-3 rounded-lg hover:bg-gray-50 transition-colors group/link"
+                          >
+                            <div className="font-medium text-gray-900 group-hover/link:text-blue-600 text-sm">
+                              All Resources
+                            </div>
+                            <div className="text-xs text-gray-600">Browse all training materials and guides</div>
+                          </Link>
+                          <Link
+                            href="/knowledge-hub/annual-reports"
+                            className="block p-3 rounded-lg hover:bg-gray-50 transition-colors group/link"
+                          >
+                            <div className="font-medium text-gray-900 group-hover/link:text-blue-600 text-sm">
+                              Annual Reports
+                            </div>
+                            <div className="text-xs text-gray-600">2023-24, 2024-25 comprehensive reports</div>
+                          </Link>
+                        </div>
                       </div>
                     </div>
-                  </Link>
+                  </div>
 
                   {/* Sub-dropdown for Media Room */}
                   <div className="relative group/media">
@@ -391,8 +491,11 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
+            <Link href="/recruitments" className="text-gray-700 hover:text-green-600 transition-colors">
+              Get Involved
+            </Link>
             <Link href="/contact" className="text-gray-700 hover:text-green-600 transition-colors">
-              Contact
+              Contact Us
             </Link>
             <Link href="/donate">
               <Button className="bg-green-600 hover:bg-green-700">Donate Now</Button>
@@ -538,6 +641,30 @@ export default function Navbar() {
 
                 {isWhatWeDoOpen && (
                   <div className="mt-2 pl-4">
+                    {/* Thematic Areas Static List */}
+                    <div className="mb-2">
+                      <div className="flex items-center py-2">
+                        <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2"></div>
+                        <span className="text-gray-700 font-medium">Thematic Area</span>
+                      </div>
+                      <div className="pl-6 space-y-1">
+                        <Link href="/programs/empowering-communities" className="flex items-center py-1 text-sm text-blue-600 hover:text-blue-800 font-bold">
+                          Empowering Communities
+                        </Link>
+                        <Link href="/programs/livelihoods" className="flex items-center py-1 text-sm text-green-600 hover:text-green-800 font-bold">
+                          Livelihoods
+                        </Link>
+                        <Link href="/programs/environment-disaster-mitigation" className="flex items-center py-1 text-sm text-yellow-600 hover:text-yellow-800 font-bold">
+                          Environment Sustainability & Disaster Management
+                        </Link>
+                        <Link href="/programs/enterprise-marketing-linkages" className="flex items-center py-1 text-sm text-purple-600 hover:text-purple-800 font-bold">
+                          Enterprise and Marketing Linkages
+                        </Link>
+                        <Link href="/programs/strategic-partnerships" className="flex items-center py-1 text-sm text-pink-600 hover:text-pink-800 font-bold">
+                          Strategic Partnerships
+                        </Link>
+                      </div>
+                    </div>
                     {/* Our Projects Sub-section */}
                     <div className="mb-2">
                       <button
@@ -570,9 +697,58 @@ export default function Navbar() {
                 )}
               </div>
 
-              <Link href="/impact" className="block px-3 py-2 text-gray-700 hover:text-green-600">
-                Our Impact
-              </Link>
+              {/* Mobile Our Impact Section */}
+              <div className="px-3 py-2">
+                <button
+                  onClick={() => setIsImpactOpen(!isImpactOpen)}
+                  className="flex items-center justify-between w-full text-gray-700 hover:text-green-600 font-medium"
+                >
+                  Our Impact
+                  <ChevronDown className={`h-4 w-4 transition-transform ${isImpactOpen ? "rotate-180" : ""}`} />
+                </button>
+
+                {isImpactOpen && (
+                  <div className="mt-2 pl-4">
+                    <Link
+                      href="/impact#stats"
+                      className="block py-2 text-sm text-gray-600 hover:text-green-600 transition-colors"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <div className="flex items-center">
+                        <div className="w-1.5 h-1.5 bg-green-600 rounded-full mr-2"></div>
+                        Impact Stats
+                      </div>
+                    </Link>
+                    <Link
+                      href="/impact#stories"
+                      className="block py-2 text-sm text-gray-600 hover:text-green-600 transition-colors"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <div className="flex items-center">
+                        <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2"></div>
+                        Stories of Transformation
+                      </div>
+                    </Link>
+                    <Link
+                      href="/impact#map"
+                      className="block py-2 text-sm text-gray-600 hover:text-green-600 transition-colors"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <div className="flex items-center">
+                        <div className="w-1.5 h-1.5 bg-purple-600 rounded-full mr-2"></div>
+                        Impact Map
+                      </div>
+                    </Link>
+                    <div className="pt-2 mt-2 border-t border-gray-200">
+                      <Link href="/impact" className="text-sm text-green-600 hover:text-green-700 font-medium flex items-center">
+                        View Complete Impact
+                        <ChevronRight className="ml-1 h-3 w-3" />
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+
               {/* Mobile Knowledge Hub Section */}
               <div className="px-3 py-2">
                 <button
@@ -585,17 +761,29 @@ export default function Navbar() {
 
                 {isKnowledgeHubOpen && (
                   <div className="mt-2 pl-4">
-                    {/* Main Knowledge Hub Link */}
-                    <Link
-                      href="/knowledge-hub"
-                      className="block py-2 text-sm text-gray-600 hover:text-green-600 transition-colors"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <div className="flex items-center">
+                    {/* Resources & Guides Sub-section */}
+                    <div className="mb-2">
+                      <div className="flex items-center py-2">
                         <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2"></div>
-                        Resources & Guides
+                        <span className="text-gray-700 font-medium">Resources & Guides</span>
                       </div>
-                    </Link>
+                      <div className="pl-6 space-y-1">
+                        <Link
+                          href="/knowledge-hub"
+                          className="block py-1 text-sm text-gray-600 hover:text-green-600 transition-colors"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          All Resources
+                        </Link>
+                        <Link
+                          href="/knowledge-hub/annual-reports"
+                          className="block py-1 text-sm text-gray-600 hover:text-green-600 transition-colors"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Annual Reports (2023-24, 2024-25)
+                        </Link>
+                      </div>
+                    </div>
 
                     {/* Media Room Sub-section */}
                     <div className="mb-2">
@@ -697,8 +885,11 @@ export default function Navbar() {
                   </div>
                 )}
               </div>
+              <Link href="/recruitments" className="block px-3 py-2 text-gray-700 hover:text-green-600">
+                Get Involved
+              </Link>
               <Link href="/contact" className="block px-3 py-2 text-gray-700 hover:text-green-600">
-                Contact
+                Contact Us
               </Link>
               <div className="px-3 py-2">
                 <Link href="/donate">

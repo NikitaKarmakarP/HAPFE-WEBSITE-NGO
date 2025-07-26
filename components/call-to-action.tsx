@@ -118,7 +118,26 @@ export function CallToAction() {
                 {item.description}
               </p>
               <Link href={item.link}>
-                <Button className="group/btn bg-white text-green-600 hover:bg-green-50 w-full transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                <Button 
+                  className="group/btn bg-white text-green-600 hover:bg-green-50 w-full transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  onClick={item.title === "Volunteer" ? (e => {
+                    e.preventDefault();
+                    const contactSection = document.getElementById("contact-section");
+                    if (contactSection) {
+                      contactSection.scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      window.location.href = "mailto:volunteer@hapef.org";
+                    }
+                  }) : item.title === "Partner" ? (e => {
+                    e.preventDefault();
+                    const contactSection = document.getElementById("contact-section");
+                    if (contactSection) {
+                      contactSection.scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      window.location.href = "mailto:partner@hapef.org";
+                    }
+                  }) : undefined}
+                >
                   <span className="flex items-center gap-2">
                     {item.buttonText}
                     <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-300" />

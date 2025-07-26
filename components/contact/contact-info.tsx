@@ -12,9 +12,8 @@ export function ContactInfo() {
             <div>
               <h4 className="font-semibold text-gray-900 mb-1">Address</h4>
               <p className="text-gray-600 text-sm">
-                Humanitarian Aid for Poverty Eradication Foundation
-                <br />
-                Kolkata, West Bengal, India
+                Humanitarian Aid for Poverty Eradication Foundation<br />
+                Bidyadharpur - Madsar Natunpally, Near Naba Sakti Sangha Club, P.O + P.S - Sonarpur, Kolkata - 700150
               </p>
             </div>
           </div>

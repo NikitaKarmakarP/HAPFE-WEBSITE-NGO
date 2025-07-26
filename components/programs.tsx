@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { MouseIcon as Mushroom, Gift, Leaf, Users, ArrowRight } from "lucide-react"
+import Link from "next/link";
 
 export function Programs() {
   const programs = [
@@ -11,6 +12,7 @@ export function Programs() {
         "Comprehensive training and resources for oyster and button mushroom cultivation, helping rural families generate sustainable income through modern farming techniques.",
       features: ["Training workshops", "Seed funding support", "Market linkage", "Technical guidance"],
       image: "/placeholder.svg?height=300&width=400",
+      href: "/programs/mushroom-entrepreneurship",
     },
     {
       icon: Gift,
@@ -24,6 +26,7 @@ export function Programs() {
         "Follow-up support",
       ],
       image: "/placeholder.svg?height=300&width=400",
+      href: "/programs/christmas-blanket-distribution",
     },
     {
       icon: Leaf,
@@ -37,6 +40,7 @@ export function Programs() {
         "Community resilience building",
       ],
       image: "/placeholder.svg?height=300&width=400",
+      href: "/programs/climate-resilient-agriculture",
     },
     {
       icon: Users,
@@ -50,6 +54,7 @@ export function Programs() {
         "Impact amplification",
       ],
       image: "/placeholder.svg?height=300&width=400",
+      href: "/programs/convergence",
     },
   ]
 
@@ -93,13 +98,15 @@ export function Programs() {
                     ))}
                   </ul>
                 </div>
-                <Button
-                  variant="outline"
-                  className="w-full border-green-600 text-green-600 hover:bg-green-50 bg-transparent"
-                >
-                  Learn More
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                <Link href={program.href} passHref legacyBehavior>
+                  <Button
+                    variant="outline"
+                    className="w-full border-green-600 text-green-600 hover:bg-green-50 bg-transparent"
+                  >
+                    Learn More
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           ))}

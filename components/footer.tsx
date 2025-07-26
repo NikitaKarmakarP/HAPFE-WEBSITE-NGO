@@ -21,7 +21,7 @@ export function Footer() {
             <div className="space-y-2 text-sm text-gray-300">
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
-                <span>Kolkata, West Bengal, India</span>
+                <span>Bidyadharpur - Madsar Natunpally, Near Naba Sakti Sangha Club, P.O + P.S - Sonarpur, Kolkata - 700150</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />

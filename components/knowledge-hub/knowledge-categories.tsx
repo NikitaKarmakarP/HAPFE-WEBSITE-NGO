@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { Sprout, Users, BookOpen, Video, Download, MessageCircle } from "lucide-react"
+import { Sprout, Users, BookOpen, Video, Download, MessageCircle, FileText } from "lucide-react"
+import Link from "next/link"
 
 export function KnowledgeCategories() {
   const categories = [
@@ -32,6 +33,13 @@ export function KnowledgeCategories() {
       color: "red",
     },
     {
+      icon: FileText,
+      title: "Resources & Guides",
+      description: "Annual reports (2023-24, 2024-25), policy documents, research papers, and comprehensive guides",
+      count: "12 Resources",
+      color: "indigo",
+    },
+    {
       icon: Download,
       title: "Downloads",
       description: "Forms, templates, reports, and other downloadable resources for program implementation",
@@ -60,21 +68,24 @@ export function KnowledgeCategories() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {categories.map((category, index) => (
-            <Card
+            <Link 
               key={index}
-              className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg cursor-pointer"
+              href={category.title === "Resources & Guides" ? "/knowledge-hub/annual-reports" : "#"}
+              className="block"
             >
-              <CardContent className="p-8">
-                <div
-                  className={`w-16 h-16 bg-${category.color}-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
-                >
-                  <category.icon className={`h-8 w-8 text-${category.color}-600`} />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{category.title}</h3>
-                <p className="text-gray-600 mb-4 leading-relaxed">{category.description}</p>
-                <div className={`text-sm font-medium text-${category.color}-600`}>{category.count}</div>
-              </CardContent>
-            </Card>
+              <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg cursor-pointer">
+                <CardContent className="p-8">
+                  <div
+                    className={`w-16 h-16 bg-${category.color}-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
+                  >
+                    <category.icon className={`h-8 w-8 text-${category.color}-600`} />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{category.title}</h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed">{category.description}</p>
+                  <div className={`text-sm font-medium text-${category.color}-600`}>{category.count}</div>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       </div>

@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export function ContactSection() {
   return (
-    <section className="bg-gray-50 py-16">
+    <section className="bg-gray-50 py-16" id="contact-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Get in Touch</h2>
@@ -22,7 +22,7 @@ export function ContactSection() {
               </div>
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Our Location</h3>
-            <p className="text-gray-600">Kolkata, West Bengal, India</p>
+            <p className="text-gray-600">Bidyadharpur - Madsar Natunpally, Near Naba Sakti Sangha Club, P.O + P.S - Sonarpur, Kolkata - 700150</p>
           </div>
 
           {/* Phone */}

@@ -101,43 +101,7 @@ export function AboutHero() {
           </div>
         </div>
 
-        {/* Mission Statement */}
-        <div className="mt-20 text-center">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
-            <p className="text-lg text-gray-600 leading-relaxed mb-8">
-              To eradicate rural poverty through sustainable agricultural practices, community empowerment, and
-              innovative development programs that respect local knowledge while introducing modern techniques for
-              lasting positive change.
-            </p>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Community First</h3>
-                <p className="text-gray-600">Putting communities at the center of all our development initiatives</p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Target className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Sustainable Solutions</h3>
-                <p className="text-gray-600">Creating long-term impact through environmentally conscious practices</p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Heart className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Holistic Approach</h3>
-                <p className="text-gray-600">Addressing economic, social, and environmental aspects of development</p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   )

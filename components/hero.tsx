@@ -3,9 +3,13 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Heart, Users, Sprout, Play, Award, MapPin, Sparkles, Star } from "lucide-react"
 import { useEffect, useState } from "react"
+import Link from "next/link";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { DialogTitle } from "@/components/ui/dialog";
 
 export function Hero() {
   const [isVisible, setIsVisible] = useState(false)
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setIsVisible(true)
@@ -88,24 +92,44 @@ export function Hero() {
             <div
               className={`flex flex-col sm:flex-row gap-4 transition-all duration-1000 delay-1000 ${isVisible ? "animate-fade-in-up" : "opacity-0 translate-y-10"}`}
             >
-              <Button
-                size="lg"
-                className="group bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
-              >
-                <span className="flex items-center gap-2">
-                  Explore Our Impact
-                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-green-700 to-emerald-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="group border-2 border-green-600 text-green-600 hover:bg-green-50 bg-white/80 backdrop-blur-sm px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
-              >
-                <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
-                Watch Our Story
-              </Button>
+              <Link href="/impact" passHref legacyBehavior>
+                <Button
+                  size="lg"
+                  className="group bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
+                >
+                  <span className="flex items-center gap-2">
+                    Explore Our Impact
+                    <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-700 to-emerald-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                </Button>
+              </Link>
+              <Dialog open={open} onOpenChange={setOpen}>
+                <DialogTrigger asChild>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="group border-2 border-green-600 text-green-600 hover:bg-green-50 bg-white/80 backdrop-blur-sm px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
+                  >
+                    <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                    Watch Our Story
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl w-full p-0 overflow-hidden">
+                  {/* Accessible Dialog Title for screen readers */}
+                  <DialogTitle className="sr-only">Our Story Video</DialogTitle>
+                  <div className="relative pb-[56.25%] h-0">
+                    <iframe
+                      src="https://www.youtube.com/embed/ktEpSvzPROc"
+                      title="Our Story Video"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="absolute top-0 left-0 w-full h-full rounded-lg"
+                    ></iframe>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
 
             {/* Stats with Staggered Animation */}

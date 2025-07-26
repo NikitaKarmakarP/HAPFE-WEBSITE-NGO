@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Target, Eye, Award, MapPin, Users, Heart, ArrowRight, Sparkles, Star } from "lucide-react"
 import { useEffect, useState } from "react"
+import Link from "next/link";
 
 export function About() {
   const [isVisible, setIsVisible] = useState(false)
@@ -104,12 +105,14 @@ export function About() {
               </div>
             </div>
 
-            <Button className="group bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-3 transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl">
-              <span className="flex items-center gap-2">
-                Learn Our Story
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-              </span>
-            </Button>
+            <Link href="/about#our-story" passHref legacyBehavior>
+              <Button className="group bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-3 transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl">
+                <span className="flex items-center gap-2">
+                  Learn Our Story
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                </span>
+              </Button>
+            </Link>
           </div>
 
           <div

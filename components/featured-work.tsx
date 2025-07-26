@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Users, Sprout, Heart, Award, Sparkles, Star, Zap } from "lucide-react"
 import { useEffect, useState } from "react"
+import Link from "next/link";
 
 export function FeaturedWork() {
   const [isVisible, setIsVisible] = useState(false)
@@ -115,10 +116,12 @@ export function FeaturedWork() {
                     <div className="text-xs text-gray-600">Income Increase</div>
                   </div>
                 </div>
-                <Button className="bg-green-600 hover:bg-green-700 group/btn transform hover:scale-105 transition-all duration-300">
-                  Learn More
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                </Button>
+                <Link href="/programs/mushroom-entrepreneurship" passHref legacyBehavior>
+                  <Button as="a" className="bg-green-600 hover:bg-green-700 group/btn transform hover:scale-105 transition-all duration-300">
+                    Learn More
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
               </div>
             </CardContent>
           </Card>
@@ -199,16 +202,19 @@ export function FeaturedWork() {
         <div
           className={`text-center transition-all duration-1000 delay-800 ${isVisible ? "animate-fade-in-up" : "opacity-0 translate-y-10"}`}
         >
-          <Button
-            size="lg"
-            variant="outline"
-            className="group border-2 border-green-600 text-green-600 hover:bg-green-50 px-8 py-4 text-lg bg-transparent transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl"
-          >
-            <span className="flex items-center gap-2">
-              View All Programs
-              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </span>
-          </Button>
+          <Link href="/programs" passHref legacyBehavior>
+            <Button
+              as="a"
+              size="lg"
+              variant="outline"
+              className="group border-2 border-green-600 text-green-600 hover:bg-green-50 px-8 py-4 text-lg bg-transparent transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              <span className="flex items-center gap-2">
+                View All Programs
+                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </span>
+            </Button>
+          </Link>
         </div>
       </div>
 

@@ -43,10 +43,8 @@ export function WorkingAreas() {
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Office Address</h4>
                     <p className="text-gray-600 text-sm">
-                      Humanitarian Aid for Poverty Eradication Foundation
-                      <br />
-                      Kolkata, West Bengal, India
-                      <br />
+                      Humanitarian Aid for Poverty Eradication Foundation<br />
+                      Bidyadharpur - Madsar Natunpally, Near Naba Sakti Sangha Club, P.O + P.S - Sonarpur, Kolkata - 700150<br />
                       Registered NGO Office
                     </p>
                   </div>
@@ -82,9 +80,9 @@ export function WorkingAreas() {
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Focus Area</h4>
                     <p className="text-gray-600 text-sm">
-                      Hiranpur Block, Pakur District
+                      Pakur District, Jharkhand
                       <br />
-                      Jharkhand State, India
+                      Including Hiranpur Block
                       <br />
                       Primary implementation area for all programs
                     </p>
@@ -114,8 +112,8 @@ export function WorkingAreas() {
           <Card className="text-center border-purple-200">
             <CardContent className="p-6">
               <div className="text-3xl font-bold text-purple-600 mb-2">1</div>
-              <div className="text-sm font-medium text-gray-900">Primary Block</div>
-              <div className="text-xs text-gray-600">Hiranpur Block Focus</div>
+              <div className="text-sm font-medium text-gray-900">Primary District</div>
+              <div className="text-xs text-gray-600">Pakur District Focus</div>
             </CardContent>
           </Card>
           <Card className="text-center border-orange-200">

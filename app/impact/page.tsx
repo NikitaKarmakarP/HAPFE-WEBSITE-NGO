@@ -2,7 +2,7 @@ import { ImpactHero } from "@/components/impact/impact-hero"
 import { ImpactStats } from "@/components/impact/impact-stats"
 import { ImpactStories } from "@/components/impact/impact-stories"
 import { ImpactMap } from "@/components/impact/impact-map"
-import { ImpactTimeline } from "@/components/impact/impact-timeline"
+import { ImpactMetrics } from "@/components/impact/impact-metrics"
 import { ContactSection } from "@/components/contact-section"
 
 export default function ImpactPage() {
@@ -12,7 +12,7 @@ export default function ImpactPage() {
       <ImpactStats />
       <ImpactStories />
       <ImpactMap />
-      <ImpactTimeline />
+      <ImpactMetrics />
       <ContactSection />
     </main>
   )

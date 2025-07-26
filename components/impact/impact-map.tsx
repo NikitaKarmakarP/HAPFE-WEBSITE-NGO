@@ -8,10 +8,11 @@ export function ImpactMap() {
     {
       name: "Pakur District",
       state: "Jharkhand",
-      villages: 45,
-      families: 800,
-      programs: ["Mushroom Entrepreneurship", "Blanket Distribution", "Climate Agriculture"],
+      villages: 70,
+      families: 1250,
+      programs: ["Mushroom Entrepreneurship", "Blanket Distribution", "Climate Agriculture", "Convergence"],
       coordinates: { lat: 24.6333, lng: 87.8333 },
+      subRegions: ["Hiranpur Block"],
     },
     {
       name: "Kolkata Region",
@@ -21,18 +22,10 @@ export function ImpactMap() {
       programs: ["Training Hub", "Resource Center"],
       coordinates: { lat: 22.5726, lng: 88.3639 },
     },
-    {
-      name: "Hiranpur Block",
-      state: "Jharkhand",
-      villages: 25,
-      families: 450,
-      programs: ["Climate Agriculture", "Convergence"],
-      coordinates: { lat: 24.75, lng: 87.9 },
-    },
   ]
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-white" id="map">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Geographic Impact</h2>
@@ -80,6 +73,22 @@ export function ImpactMap() {
                           <span className="text-sm text-gray-600">{region.villages} villages</span>
                         </div>
                       </div>
+
+                      {region.subRegions && (
+                        <div className="mb-3">
+                          <h4 className="text-sm font-medium text-gray-900 mb-2">Key Areas:</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {region.subRegions.map((subRegion, idx) => (
+                              <span
+                                key={idx}
+                                className="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium"
+                              >
+                                {subRegion}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
 
                       <div className="mb-3">
                         <h4 className="text-sm font-medium text-gray-900 mb-2">Active Programs:</h4>

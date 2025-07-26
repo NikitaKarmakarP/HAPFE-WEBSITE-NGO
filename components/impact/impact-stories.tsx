@@ -1,6 +1,10 @@
+"use client"
+
 import { Card, CardContent } from "@/components/ui/card"
 import { Quote, Star, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog"
+import React from "react"
 
 export function ImpactStories() {
   const stories = [
@@ -42,8 +46,10 @@ export function ImpactStories() {
     },
   ]
 
+  const [openIndex, setOpenIndex] = React.useState<number | null>(null);
+
   return (
-    <section className="py-24 bg-gray-50">
+    <section className="py-24 bg-gray-50" id="stories">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Stories of Transformation</h2>
@@ -55,61 +61,97 @@ export function ImpactStories() {
 
         <div className="grid lg:grid-cols-3 gap-8 mb-16">
           {stories.map((story, index) => (
-            <Card
-              key={index}
-              className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg bg-white relative overflow-hidden"
-            >
-              <CardContent className="p-8">
-                <Quote className="h-8 w-8 text-green-600 mb-4" />
-                <p className="text-gray-700 mb-6 leading-relaxed italic">"{story.story}"</p>
+            <Dialog key={index} open={openIndex === index} onOpenChange={(open) => setOpenIndex(open ? index : null)}>
+              <Card
+                className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg bg-white relative overflow-hidden"
+              >
+                <CardContent className="p-8">
+                  <Quote className="h-8 w-8 text-green-600 mb-4" />
+                  <p className="text-gray-700 mb-6 leading-relaxed italic">"{story.story}"</p>
 
-                <div className="flex items-center gap-4 mb-6">
+                  <div className="flex items-center gap-4 mb-6">
+                    <img
+                      src={story.image || "/placeholder.svg"}
+                      alt={story.name}
+                      className="w-16 h-16 rounded-full object-cover"
+                    />
+                    <div>
+                      <h4 className="font-bold text-gray-900 text-lg">{story.name}</h4>
+                      <p className="text-sm text-gray-600">{story.location}</p>
+                      <p className="text-sm text-green-600 font-medium">{story.program}</p>
+                    </div>
+                  </div>
+
+                  <div className="bg-gray-50 rounded-lg p-4 mb-6">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-gray-600">Monthly Income</span>
+                      <span className="text-sm font-medium text-green-600">{story.impact}</span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="text-center">
+                        <div className="text-sm text-gray-500">Before</div>
+                        <div className="font-bold text-gray-900">{story.beforeIncome}</div>
+                      </div>
+                      <ArrowRight className="h-4 w-4 text-green-600" />
+                      <div className="text-center">
+                        <div className="text-sm text-gray-500">After</div>
+                        <div className="font-bold text-green-600">{story.afterIncome}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <div className="flex gap-1">
+                      {[...Array(story.rating)].map((_, i) => (
+                        <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                      ))}
+                    </div>
+                    <DialogTrigger asChild>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="border-green-600 text-green-600 hover:bg-green-50 bg-transparent"
+                      >
+                        Read Full Story
+                      </Button>
+                    </DialogTrigger>
+                  </div>
+                </CardContent>
+              </Card>
+              <DialogContent className="max-w-lg w-full">
+                <DialogTitle>{story.name} - {story.program}</DialogTitle>
+                <div className="flex items-center gap-4 mb-4 mt-2">
                   <img
                     src={story.image || "/placeholder.svg"}
                     alt={story.name}
-                    className="w-16 h-16 rounded-full object-cover"
+                    className="w-20 h-20 rounded-full object-cover"
                   />
                   <div>
-                    <h4 className="font-bold text-gray-900 text-lg">{story.name}</h4>
-                    <p className="text-sm text-gray-600">{story.location}</p>
-                    <p className="text-sm text-green-600 font-medium">{story.program}</p>
+                    <div className="font-bold text-gray-900 text-lg">{story.name}</div>
+                    <div className="text-sm text-gray-600">{story.location}</div>
+                    <div className="text-sm text-green-600 font-medium">{story.program}</div>
                   </div>
                 </div>
-
-                <div className="bg-gray-50 rounded-lg p-4 mb-6">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm text-gray-600">Monthly Income</span>
-                    <span className="text-sm font-medium text-green-600">{story.impact}</span>
+                <blockquote className="italic text-gray-700 mb-4">"{story.story}"</blockquote>
+                <div className="flex items-center gap-4 mb-2">
+                  <div className="text-center">
+                    <div className="text-xs text-gray-500">Before</div>
+                    <div className="font-bold text-gray-900">{story.beforeIncome}</div>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <div className="text-center">
-                      <div className="text-sm text-gray-500">Before</div>
-                      <div className="font-bold text-gray-900">{story.beforeIncome}</div>
-                    </div>
-                    <ArrowRight className="h-4 w-4 text-green-600" />
-                    <div className="text-center">
-                      <div className="text-sm text-gray-500">After</div>
-                      <div className="font-bold text-green-600">{story.afterIncome}</div>
-                    </div>
+                  <ArrowRight className="h-4 w-4 text-green-600" />
+                  <div className="text-center">
+                    <div className="text-xs text-gray-500">After</div>
+                    <div className="font-bold text-green-600">{story.afterIncome}</div>
                   </div>
                 </div>
-
-                <div className="flex items-center justify-between">
-                  <div className="flex gap-1">
-                    {[...Array(story.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="border-green-600 text-green-600 hover:bg-green-50 bg-transparent"
-                  >
-                    Read Full Story
-                  </Button>
+                <div className="flex gap-1 mb-2">
+                  {[...Array(story.rating)].map((_, i) => (
+                    <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                  ))}
                 </div>
-              </CardContent>
-            </Card>
+                <div className="text-xs text-gray-500">Impact: <span className="font-medium text-green-600">{story.impact}</span></div>
+              </DialogContent>
+            </Dialog>
           ))}
         </div>
 
