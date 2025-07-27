@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Phone, Mail, MapPin } from "lucide-react"
+import Link from "next/link"
 
 export function ProgramCTA() {
   return (
@@ -38,10 +39,12 @@ export function ProgramCTA() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-3">
-                Apply for Program
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              <Link href="/contact">
+                <Button className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-3 group">
+                  Apply for Program
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                </Button>
+              </Link>
               <Button
                 variant="outline"
                 className="border-green-600 text-green-600 hover:bg-green-50 px-8 py-3 bg-transparent"

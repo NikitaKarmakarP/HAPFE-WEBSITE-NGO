@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Mail, Linkedin, GraduationCap, Calendar, Users, Award, Target } from "lucide-react"
+import Link from "next/link"
 
 const executiveTeam = [
   {
@@ -460,17 +461,21 @@ export function Leadership() {
               experience in creating meaningful change.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" className="bg-white text-orange-600 hover:bg-gray-100">
-                <GraduationCap className="mr-2 h-5 w-5" />
-                Apply for Internship
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-orange-600 bg-transparent"
-              >
-                Learn About Our Programs
-              </Button>
+              <Link href="/recruitments">
+                <Button size="lg" variant="secondary" className="bg-white text-orange-600 hover:bg-gray-100 group">
+                  <GraduationCap className="mr-2 h-5 w-5" />
+                  Apply for Internship
+                </Button>
+              </Link>
+              <Link href="/programs">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white text-white hover:bg-white hover:text-orange-600 bg-transparent group"
+                >
+                  Learn About Our Programs
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

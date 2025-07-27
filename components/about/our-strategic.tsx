@@ -1,8 +1,10 @@
 "use client"
 
 import { Card, CardContent } from "@/components/ui/card"
-import { Target, Sparkles, Star, MapPin, Users, TrendingUp, Lightbulb, Globe } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Target, Sparkles, Star, MapPin, Users, TrendingUp, Lightbulb, Globe, ArrowRight } from "lucide-react"
 import { useEffect, useState } from "react"
+import Link from "next/link"
 
 export function OurStrategic() {
   const [isVisible, setIsVisible] = useState(false)
@@ -143,7 +145,7 @@ export function OurStrategic() {
         <div className={`mt-16 text-center transition-all duration-1000 delay-800 ${isVisible ? "animate-fade-in-up" : "opacity-0 translate-y-10"}`}>
           <div className="bg-white rounded-3xl p-8 shadow-2xl border border-orange-100">
             <h3 className="text-3xl font-bold text-gray-900 mb-6">Our Strategic Impact</h3>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-8 mb-8">
               <div className="text-center">
                 <div className="text-4xl font-bold text-orange-600 mb-2">500+</div>
                 <div className="text-gray-600">Families Empowered</div>
@@ -156,6 +158,21 @@ export function OurStrategic() {
                 <div className="text-4xl font-bold text-green-600 mb-2">2+</div>
                 <div className="text-gray-600">Years of Service</div>
               </div>
+            </div>
+            
+            {/* Explore Our Impact Button */}
+            <div className="mt-8">
+              <Link href="/impact">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-orange-600 to-pink-600 hover:from-orange-700 hover:to-pink-700 text-white px-8 py-3 group"
+                >
+                  <span className="flex items-center gap-2">
+                    Explore Our Impact
+                    <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  </span>
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

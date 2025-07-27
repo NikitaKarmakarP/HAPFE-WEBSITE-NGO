@@ -30,8 +30,8 @@ export function NewslettersList() {
         "Women's Empowerment Success Stories",
         "Upcoming Training Calendar",
       ],
-      downloadUrl: "#",
-      viewUrl: "#",
+      downloadUrl: "/newsletters/hapef-newsletter-january-2024.pdf",
+      viewUrl: "/newsletters/hapef-newsletter-january-2024",
       featured: true,
     },
     {
@@ -50,8 +50,8 @@ export function NewslettersList() {
         "Year-End Financial Report",
         "Holiday Celebrations Across Villages",
       ],
-      downloadUrl: "#",
-      viewUrl: "#",
+      downloadUrl: "/newsletters/hapef-newsletter-december-2023.pdf",
+      viewUrl: "/newsletters/hapef-newsletter-december-2023",
       featured: false,
     },
     {
@@ -70,8 +70,8 @@ export function NewslettersList() {
         "Farmer Success Stories",
         "Winter Crop Planning",
       ],
-      downloadUrl: "#",
-      viewUrl: "#",
+      downloadUrl: "/newsletters/hapef-newsletter-november-2023.pdf",
+      viewUrl: "/newsletters/hapef-newsletter-november-2023",
       featured: false,
     },
     {
@@ -90,8 +90,8 @@ export function NewslettersList() {
         "Leadership Training Programs",
         "Entrepreneurship Success Stories",
       ],
-      downloadUrl: "#",
-      viewUrl: "#",
+      downloadUrl: "/newsletters/hapef-newsletter-october-2023.pdf",
+      viewUrl: "/newsletters/hapef-newsletter-october-2023",
       featured: true,
     },
     {
@@ -110,8 +110,8 @@ export function NewslettersList() {
         "Education Center Updates",
         "Technology Training Results",
       ],
-      downloadUrl: "#",
-      viewUrl: "#",
+      downloadUrl: "/newsletters/hapef-newsletter-september-2023.pdf",
+      viewUrl: "/newsletters/hapef-newsletter-september-2023",
       featured: false,
     },
     {
@@ -130,8 +130,8 @@ export function NewslettersList() {
         "Nutrition Awareness Programs",
         "Community Health Statistics",
       ],
-      downloadUrl: "#",
-      viewUrl: "#",
+      downloadUrl: "/newsletters/hapef-newsletter-august-2023.pdf",
+      viewUrl: "/newsletters/hapef-newsletter-august-2023",
       featured: false,
     },
     {
@@ -150,8 +150,8 @@ export function NewslettersList() {
         "Flood-Resistant Crop Varieties",
         "Emergency Response Plans",
       ],
-      downloadUrl: "#",
-      viewUrl: "#",
+      downloadUrl: "/newsletters/hapef-newsletter-july-2023.pdf",
+      viewUrl: "/newsletters/hapef-newsletter-july-2023",
       featured: false,
     },
     {
@@ -170,8 +170,8 @@ export function NewslettersList() {
         "Renewable Energy Projects",
         "Environmental Education",
       ],
-      downloadUrl: "#",
-      viewUrl: "#",
+      downloadUrl: "/newsletters/hapef-newsletter-june-2023.pdf",
+      viewUrl: "/newsletters/hapef-newsletter-june-2023",
       featured: false,
     },
     {
@@ -190,8 +190,8 @@ export function NewslettersList() {
         "Technology Adoption Stories",
         "Future Leaders Program",
       ],
-      downloadUrl: "#",
-      viewUrl: "#",
+      downloadUrl: "/newsletters/hapef-newsletter-may-2023.pdf",
+      viewUrl: "/newsletters/hapef-newsletter-may-2023",
       featured: false,
     },
     {
@@ -210,8 +210,8 @@ export function NewslettersList() {
         "Community Infrastructure Projects",
         "Partnership Announcements",
       ],
-      downloadUrl: "#",
-      viewUrl: "#",
+      downloadUrl: "/newsletters/hapef-newsletter-april-2023.pdf",
+      viewUrl: "/newsletters/hapef-newsletter-april-2023",
       featured: false,
     },
   ]
@@ -314,11 +314,20 @@ export function NewslettersList() {
               </div>
 
               <div className="flex gap-2">
-                <Button size="sm" className="flex-1 bg-purple-600 hover:bg-purple-700">
+                <Button 
+                  size="sm" 
+                  className="flex-1 bg-purple-600 hover:bg-purple-700"
+                  onClick={() => window.open(newsletter.viewUrl, '_blank')}
+                >
                   <Eye className="h-4 w-4 mr-1" />
                   Read Online
                 </Button>
-                <Button size="sm" variant="outline" className="flex-1 bg-transparent">
+                <Button 
+                  size="sm" 
+                  variant="outline" 
+                  className="flex-1 bg-transparent"
+                  onClick={() => window.open(newsletter.downloadUrl, '_blank')}
+                >
                   <Download className="h-4 w-4 mr-1" />
                   Download PDF
                 </Button>

@@ -1,383 +1,320 @@
 "use client"
 
-import type React from "react"
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import {
-  Heart,
-  CreditCard,
-  Smartphone,
-  Building,
-  User,
-  Mail,
-  Phone,
-  MapPin,
-  Shield,
-  Award,
-  Zap,
-  CheckCircle,
-} from "lucide-react"
+import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Heart, Shield, Lock, CreditCard, Gift, Star, Sparkles, ArrowRight, CheckCircle } from "lucide-react"
 
 export function DonationForm() {
-  const [selectedAmount, setSelectedAmount] = useState<number | null>(null)
+  const [selectedAmount, setSelectedAmount] = useState("")
   const [customAmount, setCustomAmount] = useState("")
-  const [donationType, setDonationType] = useState<"one-time" | "monthly">("one-time")
-  const [paymentMethod, setPaymentMethod] = useState<"card" | "upi" | "bank">("card")
-  const [isProcessing, setIsProcessing] = useState(false)
+  const [selectedFrequency, setSelectedFrequency] = useState("one-time")
+  const [selectedProgram, setSelectedProgram] = useState("general")
+  const [isAnonymous, setIsAnonymous] = useState(false)
+  const [showReceipt, setShowReceipt] = useState(true)
 
-  const predefinedAmounts = [
-    { amount: 500, popular: false },
-    { amount: 1000, popular: false },
-    { amount: 2000, popular: true },
-    { amount: 5000, popular: false },
-    { amount: 10000, popular: false },
-    { amount: 25000, popular: false },
+  const presetAmounts = [
+    { value: "500", label: "₹500", impact: "Train 1 farmer" },
+    { value: "1000", label: "₹1,000", impact: "Support 2 families" },
+    { value: "2000", label: "₹2,000", impact: "Monthly family support" },
+    { value: "5000", label: "₹5,000", impact: "Blankets for 10 families" },
+    { value: "10000", label: "₹10,000", impact: "Complete mushroom unit" },
+    { value: "25000", label: "₹25,000", impact: "Village transformation" },
   ]
 
-  const handleAmountSelect = (amount: number) => {
-    setSelectedAmount(amount)
-    setCustomAmount("")
-  }
+  const programs = [
+    { value: "general", label: "General Fund", description: "Most needed areas" },
+    { value: "agriculture", label: "Agricultural Innovation", description: "Mushroom farming & sustainable practices" },
+    { value: "community", label: "Community Empowerment", description: "Leadership training & skill development" },
+    { value: "rural", label: "Rural Development", description: "Infrastructure & sustainable projects" },
+  ]
 
-  const handleCustomAmountChange = (value: string) => {
-    setCustomAmount(value)
-    setSelectedAmount(null)
-  }
-
-  const getFinalAmount = () => {
-    return selectedAmount || Number.parseInt(customAmount) || 0
-  }
-
-  const handleDonation = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsProcessing(true)
-
-    // Simulate payment processing with realistic delay
-    await new Promise((resolve) => setTimeout(resolve, 3000))
-
-    const amount = getFinalAmount()
-    const type = donationType
-    const method = paymentMethod
-
-    console.log("Processing donation:", { amount, type, method })
-
-    // Simulate success with celebration
-    setIsProcessing(false)
-
-    // Show success animation
-    const successDiv = document.createElement("div")
-    successDiv.innerHTML = `
-      <div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 animate-fade-in">
-        <div class="bg-white p-8 rounded-3xl shadow-2xl text-center max-w-md mx-4 animate-scale-in">
-          <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-10 h-10 text-green-600 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-bold text-gray-900 mb-2">Thank You! 🎉</h3>
-          <p class="text-gray-600 mb-4">Your ${type} donation of ₹${amount.toLocaleString()} has been processed successfully!</p>
-          <p class="text-sm text-gray-500">Receipt sent to your email</p>
-        </div>
-      </div>
-    `
-    document.body.appendChild(successDiv)
-
-    setTimeout(() => {
-      document.body.removeChild(successDiv)
-    }, 4000)
-  }
+  const frequencies = [
+    { value: "one-time", label: "One Time", description: "Single donation" },
+    { value: "monthly", label: "Monthly", description: "Recurring support" },
+    { value: "quarterly", label: "Quarterly", description: "Seasonal impact" },
+  ]
 
   return (
-    <section className="py-24 bg-gradient-to-br from-gray-50 to-green-50 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <svg className="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-              <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" strokeWidth="0.5" />
-            </pattern>
-          </defs>
-          <rect width="100" height="100" fill="url(#grid)" />
-        </svg>
+    <section id="donation-form" className="py-24 bg-gradient-to-br from-gray-50 via-white to-green-50 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-r from-green-200 to-emerald-200 rounded-full blur-3xl opacity-30 animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-blue-200 to-purple-200 rounded-full blur-3xl opacity-30 animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-purple-200 to-pink-200 rounded-full blur-3xl opacity-20 animate-pulse delay-2000"></div>
       </div>
 
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-green-200 shadow-sm mb-6">
-            <Zap className="h-4 w-4 text-yellow-500" />
-            <span className="text-sm font-semibold text-gray-800">Quick & Secure Donation</span>
+          <div className="inline-flex items-center gap-3 bg-white/90 backdrop-blur-sm px-8 py-4 rounded-full border border-green-200 shadow-xl mb-8 group hover:scale-105 transition-all duration-300">
+            <div className="relative">
+              <Heart className="h-6 w-6 text-red-500 animate-pulse" />
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-400 rounded-full animate-ping"></div>
+            </div>
+            <span className="text-lg font-bold text-gray-800">Secure Donation</span>
+            <Shield className="h-5 w-5 text-green-600" />
           </div>
-          <h2 className="text-5xl font-bold text-gray-900 mb-4">
-            Make Your
-            <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-              {" "}
-              Impact
-            </span>
+
+          <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+            Make Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">Donation</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Choose your donation amount and see the immediate impact you'll create
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Every contribution makes a real difference. Choose your amount and program to start transforming lives today.
           </p>
         </div>
 
-        <Card className="shadow-2xl border-0 overflow-hidden bg-white/80 backdrop-blur-sm">
-          <CardHeader className="bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 text-white relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-green-700 to-emerald-700 opacity-50"></div>
-            <CardTitle className="relative flex items-center gap-3 text-3xl">
-              <div className="p-2 bg-white/20 rounded-xl">
-                <Heart className="h-8 w-8 animate-pulse" />
-              </div>
-              Donation Details
-              <div className="ml-auto flex items-center gap-2 text-sm bg-white/20 px-3 py-1 rounded-full">
-                <Shield className="h-4 w-4" />
-                Secure
-              </div>
-            </CardTitle>
-          </CardHeader>
-
-          <CardContent className="p-10">
-            <form onSubmit={handleDonation} className="space-y-10">
-              {/* Donation Type with Enhanced Design */}
-              <div className="space-y-6">
-                <label className="block text-lg font-semibold text-gray-800 mb-4">Choose Donation Type</label>
-                <div className="grid grid-cols-2 gap-6">
-                  {[
-                    { type: "one-time", title: "One-time Donation", desc: "Make a single contribution", icon: "💝" },
-                    { type: "monthly", title: "Monthly Donation", desc: "Recurring monthly support", icon: "🔄" },
-                  ].map((option) => (
-                    <button
-                      key={option.type}
-                      type="button"
-                      onClick={() => setDonationType(option.type as "one-time" | "monthly")}
-                      className={`group relative p-6 rounded-2xl border-2 transition-all duration-300 ${
-                        donationType === option.type
-                          ? "border-green-500 bg-gradient-to-br from-green-50 to-emerald-50 shadow-lg scale-105"
-                          : "border-gray-200 hover:border-green-300 hover:shadow-md hover:scale-102"
-                      }`}
-                    >
-                      <div className="text-3xl mb-3">{option.icon}</div>
-                      <div className="font-bold text-lg text-gray-900 mb-2">{option.title}</div>
-                      <div className="text-sm text-gray-600">{option.desc}</div>
-                      {donationType === option.type && (
-                        <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                          <CheckCircle className="h-4 w-4 text-white" />
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Main Form */}
+          <div className="lg:col-span-2">
+            <Card className="border-0 shadow-2xl bg-white/95 backdrop-blur-sm">
+              <CardHeader className="text-center pb-8">
+                <CardTitle className="text-3xl font-bold text-gray-900 flex items-center justify-center gap-3">
+                  <Heart className="h-8 w-8 text-red-500" />
+                  Donation Details
+                  <Sparkles className="h-6 w-6 text-yellow-500 animate-pulse" />
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-8">
+                {/* Amount Selection */}
+                <div className="space-y-4">
+                  <Label className="text-lg font-semibold text-gray-900">Select Amount</Label>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    {presetAmounts.map((amount) => (
+                      <div
+                        key={amount.value}
+                        className={`group relative cursor-pointer rounded-2xl p-4 border-2 transition-all duration-300 hover:scale-105 ${
+                          selectedAmount === amount.value
+                            ? "border-green-500 bg-green-50 shadow-lg"
+                            : "border-gray-200 hover:border-green-300 bg-white"
+                        }`}
+                        onClick={() => setSelectedAmount(amount.value)}
+                      >
+                        <div className="text-center">
+                          <div className={`text-2xl font-bold mb-2 ${
+                            selectedAmount === amount.value ? "text-green-600" : "text-gray-900"
+                          }`}>
+                            {amount.label}
+                          </div>
+                          <div className="text-sm text-gray-600 font-medium">{amount.impact}</div>
                         </div>
-                      )}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Enhanced Amount Selection */}
-              <div className="space-y-6">
-                <label className="block text-lg font-semibold text-gray-800">Select Amount (₹)</label>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {predefinedAmounts.map((item) => (
-                    <button
-                      key={item.amount}
-                      type="button"
-                      onClick={() => handleAmountSelect(item.amount)}
-                      className={`group relative p-6 rounded-2xl border-2 transition-all duration-300 ${
-                        selectedAmount === item.amount
-                          ? "border-green-500 bg-gradient-to-br from-green-50 to-emerald-50 shadow-lg scale-105"
-                          : "border-gray-200 hover:border-green-300 hover:shadow-md hover:scale-102"
-                      }`}
-                    >
-                      {item.popular && (
-                        <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">
-                          POPULAR
-                        </div>
-                      )}
-                      <div className="font-bold text-2xl text-gray-900 mb-2">₹{item.amount.toLocaleString()}</div>
-                      <div className="text-sm text-gray-600">
-                        {item.amount === 500 && "Train 1 farmer"}
-                        {item.amount === 1000 && "Support for 2 weeks"}
-                        {item.amount === 2000 && "Monthly family support"}
-                        {item.amount === 5000 && "10 family blankets"}
-                        {item.amount === 10000 && "Complete mushroom unit"}
-                        {item.amount === 25000 && "Transform a village"}
+                        {selectedAmount === amount.value && (
+                          <div className="absolute -top-2 -right-2">
+                            <CheckCircle className="h-6 w-6 text-green-500 animate-pulse" />
+                          </div>
+                        )}
                       </div>
-                      {selectedAmount === item.amount && (
-                        <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                          <CheckCircle className="h-4 w-4 text-white" />
-                        </div>
-                      )}
-                    </button>
-                  ))}
-                </div>
-
-                <div className="relative">
-                  <Input
-                    type="number"
-                    placeholder="Enter custom amount (min ₹100)"
-                    value={customAmount}
-                    onChange={(e) => handleCustomAmountChange(e.target.value)}
-                    className="text-xl p-6 rounded-2xl border-2 border-gray-200 focus:border-green-500 transition-colors duration-300"
-                    min="100"
-                  />
-                  <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400">₹</div>
-                </div>
-              </div>
-
-              {/* Enhanced Payment Method */}
-              <div className="space-y-6">
-                <label className="block text-lg font-semibold text-gray-800">Choose Payment Method</label>
-                <div className="grid grid-cols-3 gap-6">
-                  {[
-                    {
-                      method: "card",
-                      icon: CreditCard,
-                      title: "Card Payment",
-                      desc: "Credit/Debit Card",
-                      color: "blue",
-                    },
-                    { method: "upi", icon: Smartphone, title: "UPI Payment", desc: "Quick & Easy", color: "green" },
-                    {
-                      method: "bank",
-                      icon: Building,
-                      title: "Bank Transfer",
-                      desc: "Direct Transfer",
-                      color: "purple",
-                    },
-                  ].map((option) => (
-                    <button
-                      key={option.method}
-                      type="button"
-                      onClick={() => setPaymentMethod(option.method as "card" | "upi" | "bank")}
-                      className={`group relative p-6 rounded-2xl border-2 transition-all duration-300 ${
-                        paymentMethod === option.method
-                          ? `border-${option.color}-500 bg-gradient-to-br from-${option.color}-50 to-${option.color}-100 shadow-lg scale-105`
-                          : "border-gray-200 hover:border-gray-300 hover:shadow-md hover:scale-102"
-                      }`}
-                    >
-                      <option.icon
-                        className={`h-8 w-8 mx-auto mb-3 ${
-                          paymentMethod === option.method ? `text-${option.color}-600` : "text-gray-400"
-                        } group-hover:scale-110 transition-transform duration-300`}
-                      />
-                      <div className="font-bold text-gray-900 mb-1">{option.title}</div>
-                      <div className="text-sm text-gray-600">{option.desc}</div>
-                      {paymentMethod === option.method && (
-                        <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                          <CheckCircle className="h-4 w-4 text-white" />
-                        </div>
-                      )}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Enhanced Donor Information */}
-              <div className="space-y-6">
-                <h3 className="text-lg font-semibold text-gray-800">Your Information</h3>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {[
-                    { id: "fullName", label: "Full Name", icon: User, type: "text", required: true },
-                    { id: "email", label: "Email Address", icon: Mail, type: "email", required: true },
-                    { id: "phone", label: "Phone Number", icon: Phone, type: "tel", required: false },
-                    { id: "city", label: "City", icon: MapPin, type: "text", required: false },
-                  ].map((field) => (
-                    <div key={field.id} className="relative">
-                      <label htmlFor={field.id} className="block text-sm font-medium text-gray-700 mb-2">
-                        <field.icon className="inline h-4 w-4 mr-2" />
-                        {field.label} {field.required && <span className="text-red-500">*</span>}
-                      </label>
+                    ))}
+                  </div>
+                  
+                  {/* Custom Amount */}
+                  <div className="mt-6">
+                    <Label className="text-lg font-semibold text-gray-900">Or Enter Custom Amount</Label>
+                    <div className="relative mt-2">
+                      <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 text-lg">₹</span>
                       <Input
-                        id={field.id}
-                        type={field.type}
-                        required={field.required}
-                        placeholder={`Enter your ${field.label.toLowerCase()}`}
-                        className="p-4 rounded-xl border-2 border-gray-200 focus:border-green-500 transition-colors duration-300"
+                        type="number"
+                        placeholder="Enter amount"
+                        value={customAmount}
+                        onChange={(e) => {
+                          setCustomAmount(e.target.value)
+                          setSelectedAmount("")
+                        }}
+                        className="pl-8 py-4 text-lg border-2 border-gray-200 focus:border-green-500 rounded-xl"
                       />
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Message */}
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Personal Message (Optional)
-                </label>
-                <Textarea
-                  id="message"
-                  rows={4}
-                  placeholder="Share why you're supporting HAPEF or any specific program you'd like to support..."
-                  className="p-4 rounded-xl border-2 border-gray-200 focus:border-green-500 transition-colors duration-300"
-                />
-              </div>
-
-              {/* Enhanced Summary */}
-              <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-8 rounded-2xl border border-green-200">
-                <div className="flex items-center gap-3 mb-4">
-                  <Award className="h-6 w-6 text-green-600" />
-                  <h3 className="font-bold text-xl text-gray-900">Donation Summary</h3>
-                </div>
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center text-lg">
-                    <span className="text-gray-700">
-                      {donationType === "monthly" ? "Monthly" : "One-time"} Donation:
-                    </span>
-                    <span className="font-bold text-2xl bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-                      ₹{getFinalAmount().toLocaleString()}
-                    </span>
                   </div>
-                  <div className="flex justify-between items-center text-sm text-gray-600">
-                    <span>Tax Deduction (50%):</span>
-                    <span className="font-semibold">₹{Math.floor(getFinalAmount() * 0.5).toLocaleString()}</span>
-                  </div>
-                  {donationType === "monthly" && (
-                    <div className="text-sm text-gray-600 bg-blue-50 p-3 rounded-lg">
-                      💡 You can cancel your monthly donation anytime by contacting us.
+                </div>
+
+                {/* Frequency Selection */}
+                <div className="space-y-4">
+                  <Label className="text-lg font-semibold text-gray-900">Donation Frequency</Label>
+                  <RadioGroup value={selectedFrequency} onValueChange={setSelectedFrequency} className="grid grid-cols-3 gap-4">
+                    {frequencies.map((frequency) => (
+                      <div
+                        key={frequency.value}
+                        className={`group relative cursor-pointer rounded-2xl p-4 border-2 transition-all duration-300 hover:scale-105 ${
+                          selectedFrequency === frequency.value
+                            ? "border-green-500 bg-green-50 shadow-lg"
+                            : "border-gray-200 hover:border-green-300 bg-white"
+                        }`}
+                      >
+                        <RadioGroupItem value={frequency.value} className="sr-only" />
+                        <div className="text-center">
+                          <div className={`text-lg font-bold mb-2 ${
+                            selectedFrequency === frequency.value ? "text-green-600" : "text-gray-900"
+                          }`}>
+                            {frequency.label}
+                          </div>
+                          <div className="text-sm text-gray-600">{frequency.description}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </RadioGroup>
+                </div>
+
+                {/* Program Selection */}
+                <div className="space-y-4">
+                  <Label className="text-lg font-semibold text-gray-900">Program Area</Label>
+                  <RadioGroup value={selectedProgram} onValueChange={setSelectedProgram} className="grid grid-cols-2 gap-4">
+                    {programs.map((program) => (
+                      <div
+                        key={program.value}
+                        className={`group relative cursor-pointer rounded-2xl p-4 border-2 transition-all duration-300 hover:scale-105 ${
+                          selectedProgram === program.value
+                            ? "border-green-500 bg-green-50 shadow-lg"
+                            : "border-gray-200 hover:border-green-300 bg-white"
+                        }`}
+                      >
+                        <RadioGroupItem value={program.value} className="sr-only" />
+                        <div>
+                          <div className={`text-lg font-bold mb-2 ${
+                            selectedProgram === program.value ? "text-green-600" : "text-gray-900"
+                          }`}>
+                            {program.label}
+                          </div>
+                          <div className="text-sm text-gray-600">{program.description}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </RadioGroup>
+                </div>
+
+                {/* Personal Information */}
+                <div className="space-y-4">
+                  <Label className="text-lg font-semibold text-gray-900">Personal Information</Label>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="firstName" className="text-sm font-medium text-gray-700">First Name</Label>
+                      <Input id="firstName" className="mt-1 py-3 border-2 border-gray-200 focus:border-green-500 rounded-xl" />
                     </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Enhanced Submit Button */}
-              <Button
-                type="submit"
-                disabled={getFinalAmount() < 100 || isProcessing}
-                className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white py-6 text-xl font-bold rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-              >
-                {isProcessing ? (
-                  <div className="flex items-center gap-3">
-                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
-                    <span>Processing Your Donation...</span>
-                    <div className="flex gap-1">
-                      <div className="w-2 h-2 bg-white rounded-full animate-bounce"></div>
-                      <div className="w-2 h-2 bg-white rounded-full animate-bounce delay-100"></div>
-                      <div className="w-2 h-2 bg-white rounded-full animate-bounce delay-200"></div>
+                    <div>
+                      <Label htmlFor="lastName" className="text-sm font-medium text-gray-700">Last Name</Label>
+                      <Input id="lastName" className="mt-1 py-3 border-2 border-gray-200 focus:border-green-500 rounded-xl" />
                     </div>
                   </div>
-                ) : (
+                  <div>
+                    <Label htmlFor="email" className="text-sm font-medium text-gray-700">Email Address</Label>
+                    <Input id="email" type="email" className="mt-1 py-3 border-2 border-gray-200 focus:border-green-500 rounded-xl" />
+                  </div>
+                  <div>
+                    <Label htmlFor="phone" className="text-sm font-medium text-gray-700">Phone Number</Label>
+                    <Input id="phone" type="tel" className="mt-1 py-3 border-2 border-gray-200 focus:border-green-500 rounded-xl" />
+                  </div>
+                </div>
+
+                {/* Options */}
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <Checkbox
+                      id="anonymous"
+                      checked={isAnonymous}
+                      onCheckedChange={(checked) => setIsAnonymous(checked as boolean)}
+                    />
+                    <Label htmlFor="anonymous" className="text-sm font-medium text-gray-700">
+                      Make this donation anonymous
+                    </Label>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <Checkbox
+                      id="receipt"
+                      checked={showReceipt}
+                      onCheckedChange={(checked) => setShowReceipt(checked as boolean)}
+                    />
+                    <Label htmlFor="receipt" className="text-sm font-medium text-gray-700">
+                      Send me a tax receipt
+                    </Label>
+                  </div>
+                </div>
+
+                {/* Submit Button */}
+                <Button className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white py-6 text-xl font-bold rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 group">
                   <span className="flex items-center gap-3">
-                    <Heart className="h-6 w-6 animate-pulse" />
-                    Donate ₹{getFinalAmount().toLocaleString()} {donationType === "monthly" ? "Monthly" : "Now"}✨
+                    <Heart className="h-6 w-6 group-hover:animate-pulse" />
+                    Complete Donation
+                    <ArrowRight className="h-6 w-6 group-hover:translate-x-2 transition-transform duration-300" />
                   </span>
-                )}
-              </Button>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
 
-              {/* Trust Indicators */}
-              <div className="grid grid-cols-3 gap-4 text-center text-sm text-gray-600">
-                <div className="flex items-center justify-center gap-2">
-                  <Shield className="h-4 w-4 text-green-600" />
-                  <span>🔒 Secure & Encrypted</span>
+          {/* Sidebar */}
+          <div className="space-y-6">
+            {/* Security Badge */}
+            <Card className="border-0 shadow-xl bg-gradient-to-r from-green-600 to-emerald-600 text-white">
+              <CardContent className="p-6 text-center">
+                <div className="flex items-center justify-center gap-3 mb-4">
+                  <Shield className="h-8 w-8" />
+                  <h3 className="text-xl font-bold">100% Secure</h3>
+                  <Lock className="h-6 w-6" />
                 </div>
-                <div className="flex items-center justify-center gap-2">
-                  <Award className="h-4 w-4 text-blue-600" />
-                  <span>📧 Instant Receipt</span>
+                <p className="text-green-100 text-sm">
+                  Your donation is protected by bank-level security encryption
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Impact Preview */}
+            <Card className="border-0 shadow-xl bg-white">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-gray-900">
+                  <Gift className="h-6 w-6 text-green-600" />
+                  Your Impact
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-green-600 mb-2">
+                    ₹{selectedAmount || customAmount || "0"}
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    {selectedAmount === "500" && "Will train 1 farmer in mushroom cultivation"}
+                    {selectedAmount === "1000" && "Will support 2 families for a week"}
+                    {selectedAmount === "2000" && "Will support a family for one month"}
+                    {selectedAmount === "5000" && "Will provide blankets for 10 families"}
+                    {selectedAmount === "10000" && "Will set up a complete mushroom unit"}
+                    {selectedAmount === "25000" && "Will transform an entire village"}
+                    {!selectedAmount && customAmount && "Will create meaningful impact"}
+                    {!selectedAmount && !customAmount && "Choose an amount to see your impact"}
+                  </div>
                 </div>
-                <div className="flex items-center justify-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-purple-600" />
-                  <span>💰 Tax Deductible</span>
+              </CardContent>
+            </Card>
+
+            {/* Trust Indicators */}
+            <Card className="border-0 shadow-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                  <Star className="h-5 w-5" />
+                  Why Trust Us?
+                </h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-300" />
+                    <span>Registered NGO since 2022</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-300" />
+                    <span>100% transparency</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-300" />
+                    <span>Tax deductible</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-300" />
+                    <span>Instant receipt</span>
+                  </div>
                 </div>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </div>
     </section>
   )

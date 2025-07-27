@@ -219,7 +219,7 @@ export default function Navbar() {
                             <div className="font-medium text-gray-900 group-hover/link:text-green-600 text-sm">Environment Sustainability & Disaster Management</div>
                           </Link>
                           <Link href="/programs/enterprise-marketing-linkages" className="block p-3 rounded-lg hover:bg-gray-50 transition-colors group/link">
-                            <div className="font-medium text-gray-900 group-hover/link:text-green-600 text-sm">Enterprise and Marketing Linkages</div>
+                            <div className="font-medium text-gray-900 group-hover/link:text-green-600 text-sm">Enterprise & Marketing Linkages</div>
                           </Link>
                           <Link href="/programs/strategic-partnerships" className="block p-3 rounded-lg hover:bg-gray-50 transition-colors group/link">
                             <div className="font-medium text-gray-900 group-hover/link:text-green-600 text-sm">Strategic Partnerships</div>
@@ -329,13 +329,13 @@ export default function Navbar() {
                   {/* Resources & Guides with Sub-dropdown */}
                   <div className="relative group/resources">
                     <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 cursor-pointer mb-2">
-                      <div className="flex items-center">
-                        <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                        <div>
+                    <div className="flex items-center">
+                      <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
+                      <div>
                           <div className="font-medium text-gray-800">Resources & Guides</div>
-                          <div className="text-sm text-gray-600">Training materials and documentation</div>
-                        </div>
+                        <div className="text-sm text-gray-600">Training materials and documentation</div>
                       </div>
+                    </div>
                       <ChevronRight className="h-4 w-4 text-gray-400" />
                     </div>
 
@@ -352,7 +352,7 @@ export default function Navbar() {
                               All Resources
                             </div>
                             <div className="text-xs text-gray-600">Browse all training materials and guides</div>
-                          </Link>
+                  </Link>
                           <Link
                             href="/knowledge-hub/annual-reports"
                             className="block p-3 rounded-lg hover:bg-gray-50 transition-colors group/link"
@@ -658,7 +658,7 @@ export default function Navbar() {
                           Environment Sustainability & Disaster Management
                         </Link>
                         <Link href="/programs/enterprise-marketing-linkages" className="flex items-center py-1 text-sm text-purple-600 hover:text-purple-800 font-bold">
-                          Enterprise and Marketing Linkages
+                          Enterprise & Marketing Linkages
                         </Link>
                         <Link href="/programs/strategic-partnerships" className="flex items-center py-1 text-sm text-pink-600 hover:text-pink-800 font-bold">
                           Strategic Partnerships
@@ -768,13 +768,13 @@ export default function Navbar() {
                         <span className="text-gray-700 font-medium">Resources & Guides</span>
                       </div>
                       <div className="pl-6 space-y-1">
-                        <Link
-                          href="/knowledge-hub"
+                    <Link
+                      href="/knowledge-hub"
                           className="block py-1 text-sm text-gray-600 hover:text-green-600 transition-colors"
-                          onClick={() => setIsOpen(false)}
-                        >
+                      onClick={() => setIsOpen(false)}
+                    >
                           All Resources
-                        </Link>
+                    </Link>
                         <Link
                           href="/knowledge-hub/annual-reports"
                           className="block py-1 text-sm text-gray-600 hover:text-green-600 transition-colors"

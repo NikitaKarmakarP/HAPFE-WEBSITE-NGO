@@ -49,6 +49,13 @@ export function Timeline() {
       icon: Users,
       color: "orange",
     },
+    {
+      year: "2025",
+      title: "Digital Transformation Initiative",
+      description: "Launched comprehensive digital literacy and e-commerce programs to connect rural communities with global markets.",
+      icon: Award,
+      color: "purple",
+    },
   ]
 
   return (

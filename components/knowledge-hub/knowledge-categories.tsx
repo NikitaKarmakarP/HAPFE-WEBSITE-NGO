@@ -74,17 +74,17 @@ export function KnowledgeCategories() {
               className="block"
             >
               <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg cursor-pointer">
-                <CardContent className="p-8">
-                  <div
-                    className={`w-16 h-16 bg-${category.color}-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
-                  >
-                    <category.icon className={`h-8 w-8 text-${category.color}-600`} />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{category.title}</h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">{category.description}</p>
-                  <div className={`text-sm font-medium text-${category.color}-600`}>{category.count}</div>
-                </CardContent>
-              </Card>
+              <CardContent className="p-8">
+                <div
+                  className={`w-16 h-16 bg-${category.color}-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
+                >
+                  <category.icon className={`h-8 w-8 text-${category.color}-600`} />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{category.title}</h3>
+                <p className="text-gray-600 mb-4 leading-relaxed">{category.description}</p>
+                <div className={`text-sm font-medium text-${category.color}-600`}>{category.count}</div>
+              </CardContent>
+            </Card>
             </Link>
           ))}
         </div>

@@ -5,6 +5,7 @@ import { Quote, Star, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog"
 import React from "react"
+import Link from "next/link"
 
 export function ImpactStories() {
   const stories = [
@@ -156,13 +157,15 @@ export function ImpactStories() {
         </div>
 
         <div className="text-center">
-          <Button
-            size="lg"
-            className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-3"
-          >
-            View All Success Stories
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+          <Link href="/success-stories">
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-3 group"
+            >
+              View All Success Stories
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

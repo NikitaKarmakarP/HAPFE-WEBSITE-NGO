@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { TrendingUp, Users, DollarSign, Home } from "lucide-react"
+import Link from "next/link"
 
 export function ProgramImpact() {
   const impacts = [
@@ -86,12 +87,16 @@ export function ProgramImpact() {
               entrepreneurs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-green-600 px-8 py-3 rounded-lg font-medium hover:bg-green-50 transition-all duration-300">
-                Apply Now
-              </button>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-medium hover:bg-white/10 transition-all duration-300">
-                Learn More
-              </button>
+              <Link href="/contact">
+                <button className="bg-white text-green-600 px-8 py-3 rounded-lg font-medium hover:bg-green-50 transition-all duration-300 group">
+                  Apply Now
+                </button>
+              </Link>
+              <Link href="/programs/mushroom-entrepreneurship">
+                <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-medium hover:bg-white/10 transition-all duration-300 group">
+                  Learn More
+                </button>
+              </Link>
             </div>
           </div>
         </div>

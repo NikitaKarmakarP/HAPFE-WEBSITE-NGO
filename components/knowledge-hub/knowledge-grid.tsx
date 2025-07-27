@@ -78,7 +78,7 @@ export function KnowledgeGrid() {
             const isAnnualReport = resource.type === "Report" && resource.title.includes("Annual Report")
             
             return (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg bg-white">
+            <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg bg-white">
                 {isAnnualReport ? (
                   <Link href="/knowledge-hub/annual-reports" className="block">
                     <div className="aspect-video relative overflow-hidden rounded-t-lg">
@@ -136,61 +136,61 @@ export function KnowledgeGrid() {
                   </Link>
                 ) : (
                   <>
-                    <div className="aspect-video relative overflow-hidden rounded-t-lg">
-                      <img
-                        src={resource.image || "/placeholder.svg"}
-                        alt={resource.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute top-4 left-4">
-                        <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-medium">
-                          {resource.type}
-                        </span>
-                      </div>
+              <div className="aspect-video relative overflow-hidden rounded-t-lg">
+                <img
+                  src={resource.image || "/placeholder.svg"}
+                  alt={resource.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute top-4 left-4">
+                  <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-medium">
+                    {resource.type}
+                  </span>
+                </div>
+              </div>
+              <CardContent className="p-6">
+                <div className="mb-3">
+                  <span className="text-xs text-blue-600 font-medium">{resource.category}</span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                  {resource.title}
+                </h3>
+                <p className="text-gray-600 text-sm mb-4 leading-relaxed">{resource.description}</p>
+
+                <div className="flex items-center gap-4 text-xs text-gray-500 mb-4">
+                  <div className="flex items-center gap-1">
+                    <User className="h-3 w-3" />
+                    <span>{resource.author}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Calendar className="h-3 w-3" />
+                    <span>{resource.date}</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-4 text-xs text-gray-500">
+                    <div className="flex items-center gap-1">
+                      <Eye className="h-3 w-3" />
+                      <span>{resource.views}</span>
                     </div>
-                    <CardContent className="p-6">
-                      <div className="mb-3">
-                        <span className="text-xs text-blue-600 font-medium">{resource.category}</span>
+                    {resource.downloads > 0 && (
+                      <div className="flex items-center gap-1">
+                        <Download className="h-3 w-3" />
+                        <span>{resource.downloads}</span>
                       </div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
-                        {resource.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm mb-4 leading-relaxed">{resource.description}</p>
+                    )}
+                  </div>
+                </div>
 
-                      <div className="flex items-center gap-4 text-xs text-gray-500 mb-4">
-                        <div className="flex items-center gap-1">
-                          <User className="h-3 w-3" />
-                          <span>{resource.author}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Calendar className="h-3 w-3" />
-                          <span>{resource.date}</span>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center gap-4 text-xs text-gray-500">
-                          <div className="flex items-center gap-1">
-                            <Eye className="h-3 w-3" />
-                            <span>{resource.views}</span>
-                          </div>
-                          {resource.downloads > 0 && (
-                            <div className="flex items-center gap-1">
-                              <Download className="h-3 w-3" />
-                              <span>{resource.downloads}</span>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-
-                      <Button className="w-full bg-blue-600 hover:bg-blue-700 group">
-                        {resource.type === "Video" ? "Watch Now" : "Read More"}
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                    </CardContent>
+                <Button className="w-full bg-blue-600 hover:bg-blue-700 group">
+                  {resource.type === "Video" ? "Watch Now" : "Read More"}
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </CardContent>
                   </>
                 )}
-              </Card>
+            </Card>
             )
           })}
         </div>
@@ -208,4 +208,4 @@ export function KnowledgeGrid() {
       </div>
     </section>
   )
-} 
+}

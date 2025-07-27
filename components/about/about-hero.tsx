@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Users, Target, Heart } from "lucide-react"
+import Link from "next/link"
 
 export function AboutHero() {
   return (
@@ -51,20 +52,24 @@ export function AboutHero() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-3"
-              >
-                Our Programs
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-green-600 text-green-600 hover:bg-green-50 px-8 py-3 bg-transparent"
-              >
-                View Impact
-              </Button>
+              <Link href="/programs">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-3 group"
+                >
+                  Our Programs
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                </Button>
+              </Link>
+              <Link href="/impact">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-green-600 text-green-600 hover:bg-green-50 px-8 py-3 bg-transparent group"
+                >
+                  View Impact
+                </Button>
+              </Link>
             </div>
           </div>
 
